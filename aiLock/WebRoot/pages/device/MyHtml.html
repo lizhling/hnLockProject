@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Load Dynamic ComboBox Data - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../javascript/jquery-easyui-1.4.2/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../javascript/jquery-easyui-1.4.2/themes/icon.css">
+	<script type="text/javascript" src="../../javascript/libs/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../javascript/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
+</head>
+
+<body class="easyui-layout">
+	<h2>Load Dynamic ComboBox Data</h2>
+	<p>Click the button below to load data.</p>
+	
+	<div style="margin:20px 0;">
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#language').combobox('reload', '../../javascript/jquery-easyui-1.4.2/demo/combobox/combobox_data1.json')">LoadData</a>
+	</div>
+<div id="example-window" class="easyui-window" title="系统用户信息" data-options="iconCls:'icon-save',minimizable:false" style="padding:5px;background: #fafafa;">
+		<div region="center" style="padding:5px;background:#fff;border:1px solid #ccc;">
+			<form method="post" >
+			<input type="hidden" id="lockId" name="lockInfo.lockId"/>
+			<table border="0">
+			<tr>
+					<td width="20%" align="right">门锁编码：</td>
+					<td>
+			
+			<select class="easyui-combobox"  id="language" name="language"data-options="valueField:'id',textField:'text'" editable="false" data-options="required:true" style="width:155px;"></select>
+			</td>
+				</tr>
+</table>
+			</form>
+		</div>
+		<div style="text-align:right;height:30px;line-height:24px;padding-top:5px;">
+			<a id="save_button" class="easyui-linkbutton c6" iconCls="icon-ok" href="javascript:void(0)" onclick="submitForm()">保存</a>
+			<a id="cancl_button" class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:void(0)" onclick="closeWindow()">取消</a>
+		</div>
+	</div>
+</body>
+</html>

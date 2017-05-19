@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.mapper.composite" value="struts" />
+    <constant name="struts.serve.static.browserCache" value="false" /> 
+	<constant name="struts.convention.default.parent.package" value="default-package" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.locale" value="zh_CN" />
+	<constant name="struts.multipart.maxSize" value="100000000" />
+
+	<package name="default-package" extends="json-default">
+		<global-results>
+			<result name="failure">/login.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping name="runtimeexception" exception="java.lang.RuntimeException" result="failure" />
+		</global-exception-mappings>
+	</package>
+	
+	<package name="app-package" extends="json-default">
+		<interceptors>
+			<!--<interceptor name="appIntercept" class="com.hnctdz.aiLock.security.AppIntercept"></interceptor>-->
+			<interceptor name="annoInterceptor" class="com.opensymphony.xwork2.interceptor.annotations.AnnotationWorkflowInterceptor"></interceptor>
+			<interceptor-stack name="appStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="annoInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="appStack"></default-interceptor-ref>
+	</package>
+</struts>

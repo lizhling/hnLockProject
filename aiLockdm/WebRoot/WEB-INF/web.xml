@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name></display-name>	
+	<welcome-file-list>
+	  <welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+  
+  	<!-- 配置Spring配置文件的位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	
+	<!-- <listener>
+		<listener-class>com.hnctdz.aiLockdm.socket.IntegrationBean</listener-class>
+	</listener> -->
+	
+	<!-- 使用ContextLoaderListener初始化Spring容器 -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- 配置编码 --> 
+	 <filter>
+		<filter-name>servletFilter</filter-name>
+		<filter-class>com.hnctdz.aiLockdm.filters.ServletFilter</filter-class>
+	</filter> 
+	 <filter-mapping>
+		<filter-name>servletFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	<servlet>
+		<servlet-name>SendLockCommandServlet</servlet-name>
+		<servlet-class>com.hnctdz.aiLockdm.devService.SendLockCommandServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SendLockCommandServlet</servlet-name>
+		<url-pattern>/sendLockCommand</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SendExpressCommandServlet</servlet-name>
+		<servlet-class>com.hnctdz.aiLockdm.devService.SendExpressCommandServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SendExpressCommandServlet</servlet-name>
+		<url-pattern>/sendExpressCommand</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 配置mule
+	<context-param>
+		<param-name>org.mule.config</param-name>
+		<param-value>mule-config.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>
+			org.mule.config.builders.MuleXmlBuilderContextListener
+		</listener-class>
+	</listener>
+	
+	<servlet>
+		<servlet-name>muleServlet</servlet-name>
+		<servlet-class>
+			org.mule.transport.servlet.MuleReceiverServlet
+		</servlet-class>
+		<load-on-startup />
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>muleServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	 -->
+</web-app>

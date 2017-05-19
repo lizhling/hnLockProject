@@ -1,0 +1,8 @@
+Net = {
+	
+	temple : {},
+	functions:{},
+	dateHelper:{}
+};
+
+

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<sec:http use-expressions="true" auto-config="true" access-denied-page="/login.jsp?accessDenied">
+    	<!-- jsp页面权限控制 -->
+        <sec:intercept-url pattern="/login.jsp" access="permitAll" />
+    	<sec:intercept-url pattern="/index.jsp" access="permitAll" />
+    	<sec:intercept-url pattern="/pages/**/*.jsp" access="isAuthenticated()" />
+    	<!-- <sec:intercept-url pattern="/**action/**" access="isAuthenticated()" />
+    	<sec:intercept-url pattern="/**/*.action" access="isAuthenticated()" /> -->
+    	<sec:intercept-url pattern="/**" access="permitAll" />
+
+    	<sec:custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+        
+        <sec:form-login login-page="/login.jsp"
+			default-target-url="/pages/main.jsp" 
+			login-processing-url="/j_spring_security_check"
+			authentication-failure-url="/login.jsp?fail=true" />
+			
+        <sec:logout logout-success-url="/login.jsp?logout=true" logout-url="/j_spring_security_logout" invalidate-session="true"/>
+        
+        <!-- <sec:remember-me /> 
+        
+        <sec:session-management invalid-session-url="/logout.jsp">
+			<sec:concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+		</sec:session-management>
+		-->
+    </sec:http>
+    
+    <!-- 自定义安全filter -->
+    <bean id="myFilter" class="com.hnctdz.aiLock.security.FilterSecurityInterceptor">   
+        <property name="authenticationManager" ref="myAuthenticationManager" />
+        <!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源     -->
+        <property name="accessDecisionManager" ref="myAccessDecisionManager" />
+        <property name="securityMetadataSource" ref="mySecurityMetadataSource" />
+    </bean>
+    
+    <!-- 资源源数据定义，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色访问     -->  
+    <bean id="mySecurityMetadataSource" init-method="loadResourceDefine"  class="com.hnctdz.aiLock.security.InvocationSecurityMetadataSourceService">  
+        <property name="sysRoleService" ref="sysRoleService" />
+        <property name="sysRoleResService" ref="sysRoleResService" />
+        <property name="appMenuPermissionsService" ref="appMenuPermissionsService" />
+    </bean>
+    <bean id="sysRoleService" class="com.hnctdz.aiLock.service.system.impl.SysRoleServiceImpl"></bean>
+    <bean id="sysRoleResService" class="com.hnctdz.aiLock.service.system.impl.SysRoleResServiceImpl"></bean>
+    <bean id="appMenuPermissionsService" class="com.hnctdz.aiLock.service.system.impl.AppMenuPermissionsServiceImpl"></bean>
+    
+    <!-- 验证配置 ， 认证管理器，实现用户认证的入口，主要实现UserDetailsService接口即可 -->   
+    <sec:authentication-manager alias="myAuthenticationManager">   
+        <sec:authentication-provider user-service-ref="userDetailsService">
+        	<!--<sec:password-encoder hash="md5" base64="false"/> -->   
+        </sec:authentication-provider>   
+    </sec:authentication-manager>
+    
+    <!-- 决定请求的URL是否有权限访问 -->
+	<bean id="myAccessDecisionManager" class="com.hnctdz.aiLock.security.AccessDecisionManager"/>
+	<!-- 登录请求用户名密码验证 -->
+	<bean id="userDetailsService" class="com.hnctdz.aiLock.security.UserDetailServiceImpl" />
+</beans>

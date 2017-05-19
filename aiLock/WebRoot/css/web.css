@@ -1,0 +1,243 @@
+.bj {
+	background-image: url(../images/download/bj1.jpg);
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-color: #d1e1f1;
+}
+.index-line {
+	background-image: url(../images/download/image-line.png);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	height: 415px;
+	width: 100%;
+}
+.index-phone {
+	background-image: url(../images/download/image-01.gif);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	width: 215px;
+}
+.index-images02 {
+	background-image: url(../images/download/image-02.gif);
+	background-repeat: no-repeat;
+	width: 630px;
+	height: 415px;
+	background-position: right;
+}
+.index-table {
+	width: 1039px;
+}
+
+.index-logo {
+	background-image: url(../images/download/image-logo.gif);
+	background-repeat: no-repeat;
+	height: 52px;
+	width: 552px;
+	text-align: center;
+	position: absolute;
+	top: 77px;
+}
+.index-content {
+	background-image: url(../images/download/index-content-bj.jpg);
+	background-repeat: repeat-x;
+	height: 650px;
+	width: 100%;
+	background-color: #8fb0cf;
+	background-position: top;
+}
+.index-images03 {
+	background-image: url(../images/download/image-03.gif);
+	background-repeat: no-repeat;
+	height: 80px;
+	width: 1039px;
+	position: relative;
+	right: 0px;
+}
+.index-input {
+	background-image: url(../images/download/image-input.gif);
+	height: 240px;
+	width: 432px;
+	background-repeat: no-repeat;
+	background-position: top;
+	float: left;
+	margin-top: 58px;
+	padding-top: 15px;
+}
+.index-input_01 {
+	background-image: url(../images/download/image-input_01.gif);
+	height: 240px;
+	width: 432px;
+	background-repeat: no-repeat;
+	background-position: top;
+	float: left;
+	margin-top: 58px;
+	padding-top: 15px;
+}
+.index-input_02 {
+	background-image: url(../images/download/image-input_02.gif);
+	height: 240px;
+	width: 642px;
+	background-repeat: no-repeat;
+	background-position: top;
+	float: left;
+	margin-top: 58px;
+	padding-top: 15px;
+}
+.index-input_03 {
+	background-image: url(../images/download/image-input_03.gif);
+	height: 480px;
+	width: 453px;
+	background-repeat: no-repeat;
+	background-position: top;
+	float: left;
+	margin-top: 58px;
+	padding-top: 15px;
+}
+.index-input_android {
+	float: left;
+	height: 180px;
+	width: 160px;
+	padding-top: 30px;
+	padding-right: 12px;
+	padding-bottom: 12px;
+	padding-left: 12px;
+}
+.index-input_ios {
+	float: left;
+	height: 180px;
+	padding-top: 30px;
+	padding-bottom: 12px;
+	padding-left: 40px;
+	padding-right: 12px;
+}
+.index-input_esop {
+	float: left;
+	height: 180px;
+	padding-top: 45px;
+	padding-bottom: 12px;
+	padding-left: 12px;
+	padding-right: 12px;
+	width: 160px;
+}
+.index-input_font_01 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #1f1f1f;
+	text-align: left;
+	line-height: 30px;
+}
+.index-input_font_02{
+	font-size: 12px;
+	color: #b21501;
+	text-align: left;
+	line-height: 30px;
+}
+.index-input_font_03{
+	font-size: 12px;
+	color: #666666;
+	text-align: left;
+	line-height: 25px;
+}
+.index-input_button_content{
+	padding-top: 4px;
+	padding-left: 5px;
+	}
+.index-input_button{
+	background-image: url(../images/download/button.gif);
+	height: 35px;
+	width: 140px;
+	font-size: 12px;
+	color: #FFF;
+	line-height: 35px;
+	}
+.index-input_button a {
+	font-size: 14px;
+	color: #FFF;
+	text-decoration: none;
+}
+.index-input_button a:hover{
+	font-size: 14px;
+	color: #FFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+.index-input_button_01 {
+	background-image: url(../images/download/button_01.gif);
+	height: 35px;
+	width: 110px;
+	font-size: 12px;
+	color: #FFF;
+	line-height: 35px;
+	text-align: center;
+}
+.index-input_button_01 a {
+	font-size: 14px;
+	color: #FFF;
+	text-decoration: none;
+}
+.index-input_button_01 a:hover{
+	font-size: 14px;
+	color: #FFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+.index-input_button_02 {
+	background-image: url(../images/download/button_02.gif);
+	height: 35px;
+	width: 260px;
+	font-size: 12px;
+	color: #FFF;
+	line-height: 35px;
+	text-align: center;
+}
+.index-input_button_02 a {
+	font-size: 14px;
+	color: #FFF;
+	text-decoration: none;
+}
+.index-input_button_02 a:hover{
+	font-size: 14px;
+	color: #FFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+.index-input-table {
+	font-size: 14px;
+	line-height: 40px;
+}
+.index-input-table td {
+	padding: 5px;
+	text-align: right;
+}
+
+.index-input-style {
+	height: 35px;
+	width: 260px;
+	line-height: 35px;
+	}
+.index-input-style1 {
+	height: 35px;
+	width: 135px;
+	line-height: 35px;
+	}
+
+
+.index-font {
+	height: 280px;
+	width: 500px;
+	float: right;
+	padding-top: 65px;
+	text-align: left;
+	padding-left: 25px;
+}
+.index-font-content {
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 30px;
+	padding-top: 40px;
+	text-align: left;
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false">
+	
+	<!-- 将日志输出到控制台中 --> 
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+	   <param name="Threshold" value="INFO" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p] %-d{yyyy-MM-dd HH:mm:ss} [%c][%L]: %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- 输出日志到文件  每天一个文件 -->
+    <appender name="LockRecord" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Threshold" value="INFO"></param>
+        <param name="ImmediateFlush" value="true"></param>
+        <param name="File" value="/aiLockdmLogs/recordLog/lockRecord.log"></param>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %-d{yyyy-MM-dd HH:mm:ss} [%c][%L]: %m%n"></param>
+        </layout>
+    </appender>
+    
+	<appender name="logError" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Threshold" value="ERROR"/>
+		<param name="Encoding" value="UTF-8"/>
+		<param name="ImmediateFlush" value="true"/>
+		<param name="File" value="/aiLockdmLogs/error/error.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'"></param>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p] %-d{yyyy-MM-dd HH:mm:ss} [%c][%L]: %m%n"/>
+		</layout>
+	</appender>
+	
+	<logger name="com.hnctdz.aiLockdm.socket.SocketHandler" additivity="false">     
+        <level value="INFO"/>
+        <appender-ref ref="LockRecord" />     
+    </logger>
+	
+	<root>
+		<appender-ref ref="console" />
+		<appender-ref ref="logError" />
+	</root>
+	
+</log4j:configuration>

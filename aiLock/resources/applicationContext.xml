@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:task="http://www.springframework.org/schema/task" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+    
+    <context:annotation-config/>
+    <context:component-scan base-package="com.hnctdz.aiLock.action,com.hnctdz.aiLock.appInterface,com.hnctdz.aiLock.dao,com.hnctdz.aiLock.service,com.hnctdz.aiLock.domain,com.hnctdz.aiLock.security,org.androidpn.server.service"/>
+    <aop:aspectj-autoproxy />
+	<task:annotation-driven/>
+	
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+    	<property name="driverClass" value="com.mysql.jdbc.Driver" />
+    	<!-- 本地环境 -->
+    	<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/ailock?useOldAliasMetadataBehavior=true" />
+    	<property name="user" value="ailock"></property>
+    	<property name="password" value="ailock"></property>
+    	<!-- 生产环境
+    	<property name="jdbcUrl" value="jdbc:mysql://rdstc9zqgjhzci3cj4r4l.mysql.rds.aliyuncs.com:3306/ailock?useOldAliasMetadataBehavior=true" />
+    	<property name="user" value="ailock"></property>
+    	<property name="password" value="ailock"></property> -->
+    	
+    	<!-- 初始化时创建的连接数，应在minPoolSize与maxPoolSize之间取值 -->
+		<property name="initialPoolSize"><value>5</value></property>
+    	<!-- 连接池中保留的最小连接数 -->
+		<property name="minPoolSize"><value>2</value></property>
+		<!-- 连接池中保留的最大连接数 -->
+		<property name="maxPoolSize"><value>10</value></property>
+		<!-- 最大空闲时间，20秒内未使用则连接被丢弃。若为0则永不丢弃 -->
+		<property name="maxIdleTime"><value>10</value></property>
+		<!-- 每隔30秒检查连接池里的空闲连接 ，单位是秒 -->
+		<property name="idleConnectionTestPeriod"><value>30</value></property>
+		<!-- 当连接池里面的连接用完的时候，C3P0一次同时获取的新的连接数 -->
+		<property name="acquireIncrement"><value>5</value></property>
+		<!--当连接池用完时客户端调用getConnection()后等待获取新连接的时间，超时后将抛出
+			SQLException,如设为0则无限期等待。单位毫秒。 -->
+		<property name="checkoutTimeout"><value>10000</value></property> 
+    </bean>
+    
+    <bean name="hibernateProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.default_batch_fetch_size">30</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.format_sql">false</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="annotatedClasses"
+		class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<!-- 系统管理 -->
+				<value>com.hnctdz.aiLock.domain.system.SysUser</value>
+				<value>com.hnctdz.aiLock.domain.system.SysRes</value>
+				<value>com.hnctdz.aiLock.domain.system.SysRole</value>
+				<value>com.hnctdz.aiLock.domain.system.SysRoleRes</value>
+				<value>com.hnctdz.aiLock.domain.system.SysUserRole</value>
+				<value>com.hnctdz.aiLock.domain.system.SysBasicData</value>
+				<value>com.hnctdz.aiLock.domain.system.AppMenuPermissions</value>
+				<value>com.hnctdz.aiLock.domain.system.SysNotice</value>
+				<value>com.hnctdz.aiLock.domain.system.SysVersion</value>
+				<value>com.hnctdz.aiLock.domain.system.SysArea</value>
+				
+				<!-- 资料管理 -->
+				<value>com.hnctdz.aiLock.domain.info.PersonnelInfo</value>
+				<value>com.hnctdz.aiLock.domain.info.OrgInfo</value>
+				<value>com.hnctdz.aiLock.domain.info.UpdateAuthorize</value>
+				
+				<!-- 设备管理 -->
+				<value>com.hnctdz.aiLock.domain.device.DevKeyInfo</value>
+				<value>com.hnctdz.aiLock.domain.device.DevKeyGroup</value>
+				<value>com.hnctdz.aiLock.domain.device.DevLockInfo</value>
+				<value>com.hnctdz.aiLock.domain.device.DevGroup</value>
+				<value>com.hnctdz.aiLock.domain.device.DevLockInGroup</value>
+				<value>com.hnctdz.aiLock.domain.device.LockKeyAuthorize</value>
+				
+				<!-- 统计分析 -->
+				<value>com.hnctdz.aiLock.domain.analysis.UnlockRecords</value>
+				<value>com.hnctdz.aiLock.domain.analysis.LockStatusRecords</value>
+				
+			</list>
+		</property>
+	</bean>			
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+    	<property name="dataSource" ref="dataSource"></property>
+		<property name="annotatedClasses" ref="annotatedClasses" />
+		<property name="hibernateProperties" ref="hibernateProperties" />
+    </bean>
+    
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+    
+    <!-- 该 BeanPostProcessor 将自动对标注 @Autowired 的 Bean 进行注入 -->      
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> 
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 配置事务管理器（声明式事务）-->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- 配置代理(事务的传播特性) -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 所有以'find' 'get'开头的方法是read-only的 -->
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="*" propagation="SUPPORTS" read-only="true" />
+			<!-- 其他方法使用默认的事务设置
+			<tx:method name="*" /> -->
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="servicePointcut"
+			expression="execution(* com.hnctdz.aiLock.service.*.*(..))" />
+		<aop:pointcut id="securityPointcut"
+			expression="execution(* com.hnctdz.aiLock.security.*.*(..))" />
+			
+		<aop:advisor pointcut-ref="servicePointcut" advice-ref="txAdvice"/>
+		<aop:advisor pointcut-ref="securityPointcut" advice-ref="txAdvice"/>
+	</aop:config>
+	
+	<!-- 定时任务配置 -->
+    <bean id="scheduledTasks" class="com.hnctdz.aiLock.task.ScheduledTasks" /> 
+	<task:scheduled-tasks> 
+        <task:scheduled ref="scheduledTasks" method="appMenuUpdateTask" cron="0 0/30 * * * ?" />  
+    </task:scheduled-tasks>
+    
+    
+    <!-- 提供applicationContext -->
+	<bean class="com.hnctdz.aiLock.utils.ApplicationContextUtil"></bean>
+	
+	<!-- 导入security配置 -->
+	<import resource="classpath:security/*.xml" />
+	<import resource="classpath:service/*.xml" />
+</beans>
+	

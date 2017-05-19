@@ -1,0 +1,111 @@
+@CHARSET "UTF-8";
+body {
+	margin: 0 auto;
+	width: 100%;
+	padding: 0px;
+	font-size: 12px;
+	font-family: Arial;
+}
+td,th { 
+	text-decoration: none; 
+}
+A:link { 
+	/*color:#333333;
+	text-decoration: none; 
+}
+A:visited { 
+	/*color:#333333;*/
+	text-decoration: none; 
+}
+A:hover {
+	color:#FF0000;
+	text-decoration: underline;
+	font-weight: normal;
+}
+
+.logo {
+	background: url('../css/images/logo.jpg') no-repeat;
+}
+
+.north_bg{
+	background: url('../css/images/logo_bg.jpg') repeat;
+}
+
+.formPanel{
+	background:#fafafa;
+	padding:10px;
+}
+
+.del_class{
+	margin: 0 auto;
+}
+
+.file_class{
+	margin: 0 auto;
+}
+
+.img_class{
+	float:left;
+	display:none;
+	width:90px;
+	height:70px;
+	margin-left:180px;		
+}
+
+.selContent{
+	display:none;
+}
+
+.arrow_button{
+	background-image:url(../images/arrow_bnt.png);
+	background-repeat:no-repeat;
+	border-width:0;
+	font-size:12pt;
+	width:58px;
+	height:21px;
+	cursor:hand;
+	text-align: center;
+	color: #000;
+	background-position: center center;
+	line-height: 18px;
+	font-family: "微软雅黑";
+	background-color: transparent;
+}
+.arrow_buttonOut{
+	background-image:url(../images/arrow_bnt.png);
+	background-repeat:no-repeat;
+	border-width:0;
+	font-size:12pt;
+	width:58px;
+	height:21px;
+	cursor:hand;
+	text-align: center;
+	color: #000;
+	background-position: center center;
+	line-height: 18px;
+	font-family: "微软雅黑";
+	background-color: transparent;
+}
+.arrow_buttonOver{
+	background-image:url(../images/arrow_click_bnt.png);
+	background-repeat:no-repeat;
+	border-width:0;
+	font-size:12pt;
+	width:58px;
+	height:21px;
+	cursor:hand;
+	text-align: center;
+	color: #000;
+	background-position: center center;
+	line-height: 18px;
+	font-family: "微软雅黑";
+	background-color: transparent;
+}
+
+	
+.arrow_center_div{ float:left;width:58px;margin-top:20px;margin-left:16px;}
+* html .arrow_center_div {float:left;width:58px;margin-top:20px;margin-left:6px;} /* IE6 */ 
+*+html .arrow_center_div { float:left;width:58px;margin-top:20px;margin-left:6px;} /* IE7 */
+	
+	
+

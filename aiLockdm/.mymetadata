@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="aiLockdm"
+  id="myeclipse.1432625473459"
+  context-root="/aiLockdm"
+  j2ee-spec="5.0"
+  archive="aiLockdm.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
